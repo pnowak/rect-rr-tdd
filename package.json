@@ -42,12 +42,6 @@
   "dependencies": {
     "@babel/runtime": "^7.11.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "whatwg-fetch": "^3.4.0"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|scss)$": "<rootDir>/src/styles/__mocks__/styleMock.js"
-    }
+    "react-dom": "^16.13.1"
   }
 }

@@ -1,102 +1,37 @@
-{
+{   
     "env": {
         "browser": true,
         "es6": true,
         "node": true
     },
-    "extends": [
-        "eslint:recommended"
-    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parser": "babel-eslint",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true,
-            "modules": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "react-hooks"
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "project": ["tsconfig.eslint.json"
+            ],
+        "sourceType": "module"
+        },
     "rules": {
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
-        "react/jsx-uses-react": 2,
-        "react/jsx-uses-vars": 2,
-        "react/react-in-jsx-scope": 2,
-        "arrow-parens": [
-            "error",
-            "as-needed",
+        "unicorn/filename-case": [
+        "warn",
             {
-                "requireForBlockBody": true
-            }
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "arrow-body-style": "off",
-        "class-methods-use-this": "off",
-        "comma-dangle": "off",
-        "consistent-return": "off",
-        "func-names": "off",
-        "import/no-extraneous-dependencies": "off",
-        "indent": [
-            "error",
-            2,
-            {
-                "SwitchCase": 1,
-                "FunctionDeclaration": {
-                    "parameters": "first"
-                },
-                "FunctionExpression": {
-                    "parameters": "first"
+        "cases": {
+        "camelCase": true,
+        "pascalCase": true
                 }
-            }
-        ],
-        "newline-per-chained-call": "off",
-        "no-constant-condition": [
-            "error",
-            {
-                "checkLoops": false
-            }
-        ],
-        "no-eq-null": "error",
-        "no-mixed-operators": [
-            "error",
-            {
-                "groups": [
-                    [
-                        "+",
-                        "-",
-                        "*",
-                        "/",
-                        "%",
-                        "**"
-                    ]
-                ]
-            }
-        ],
-        "no-multiple-empty-lines": [
-            "error",
-            {
-                "max": 1
-            }
-        ],
-        "no-param-reassign": "off",
-        "no-plusplus": [
-            "error",
-            {
-                "allowForLoopAfterthoughts": true
             }
         ]
     },
+    "plugins": ["@typescript-eslint", "jsdoc", "import", "prefer-arrow", "unicorn"
+    ],
     "settings": {
         "react": {
             "version": "detect"

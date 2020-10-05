@@ -1,14 +1,12 @@
 import React from 'react';
-import { createContainer, Element, Render } from './helpers';
+import { createContainer, Element, LabelFor, Render } from "./helpers";
 import { Editor } from '../src/features/editor/Editor';
 
 describe('Editor', () => {
-  let render: Render, element: Element;
+  let render: Render, element: Element, labelFor: LabelFor;
 
   beforeEach(() => {
-    ({
-      render, element
-    } = createContainer());
+    ({ render, element, labelFor } = createContainer());
   });
 
   it('renders a form', () => {
@@ -30,5 +28,11 @@ describe('Editor', () => {
     const widthFiled = element('form[id="editor"]')!.elements.width;
 
     expect(widthFiled.value).toEqual('100');
-  })
+  });
+
+  it('renders a label for the width field', () => {
+    render(<Editor width={100} />);
+    expect(labelFor('width')).not.toBeNull();
+    expect(labelFor('width')!.textContent).toEqual('Width');
+  });
 })

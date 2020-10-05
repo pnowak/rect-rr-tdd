@@ -17,21 +17,13 @@
     "parserOptions": {
         "project": ["tsconfig.eslint.json"
             ],
-        "sourceType": "module"
+        "sourceType": "module",
+        "createDefaultProgram": true
         },
     "rules": {
-        "unicorn/filename-case": [
-        "warn",
-            {
-        "cases": {
-        "camelCase": true,
-        "pascalCase": true
-                }
-            }
-        ]
+        "@typescript-eslint/no-non-null-assertion": "off"
     },
-    "plugins": ["@typescript-eslint", "jsdoc", "import", "prefer-arrow", "unicorn"
-    ],
+    "plugins": ["@typescript-eslint"],
     "settings": {
         "react": {
             "version": "detect"

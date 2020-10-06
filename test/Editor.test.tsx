@@ -16,7 +16,7 @@ describe('Editor', () => {
       expect(element('form[id="editor"]')).not.toBeNull();
     });
 
-    describe('has a width filed', () => {
+    describe('has a width filed which', () => {
       it('renders the width filed as a number type', () => {
         render(<Editor />);
         const widthFiled = element('form[id="editor"]')!.elements.width;
@@ -46,7 +46,7 @@ describe('Editor', () => {
         expect(widthFiled.id).toEqual('width');
       });
 
-      it('react on change value', () => {
+      it('react on change event', () => {
         render(<Editor />);
         const widthFiled = element('form[id="editor"]')!.elements
           .width as HTMLInputElement;

@@ -7,7 +7,15 @@ export const Editor = () => {
   return (
     <form id="editor">
       <label htmlFor="width">Width</label>
-      <input id="width" type="number" name="width" value={width} onChange={e => setWidth(Number(e.target.value))} />
+      <input
+        id="width"
+        type="number"
+        name="width"
+        value={width}
+        onChange={(e: React.FormEvent<HTMLInputElement>): void =>
+          setWidth(Number(e.currentTarget.value))
+        }
+      />
     </form>
   );
 };

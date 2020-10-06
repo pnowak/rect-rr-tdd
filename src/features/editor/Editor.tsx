@@ -8,6 +8,6 @@ type EditorProps = {
 export const Editor = ({ width }: EditorProps) => (
   <form id="editor">
     <label htmlFor="width">Width</label>
-    <input type="number" name="width" value={width} readOnly />
+    <input id="width" type="number" name="width" value={width} readOnly />
   </form>
 );

@@ -35,4 +35,10 @@ describe('Editor', () => {
     expect(labelFor('width')).not.toBeNull();
     expect(labelFor('width')!.textContent).toEqual('Width');
   });
+
+  it('assign an id that matches the label id to the width field', () => {
+    render(<Editor width={100} />);
+    const widthFiled = element('form[id="editor"]')!.elements.width;
+    expect(widthFiled.id).toEqual('width');
+  });
 })

@@ -200,4 +200,11 @@ describe('Editor', () => {
       });
     });
   });
+
+  describe('has an output element which', () => {
+    it('renders a div with the right id', () => {
+      render(<Editor />);
+      expect(element('div#output')).not.toBeNull();
+    });
+  })
 });

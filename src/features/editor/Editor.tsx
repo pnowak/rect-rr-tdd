@@ -5,6 +5,7 @@ export const Editor = () => {
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(100);
   const [borderRadius, setBorderRadius] = useState(0);
+  const [backgroundColor, setBackgroundColor] = useState('#000000');
 
   return (
     <form id="editor">
@@ -36,6 +37,16 @@ export const Editor = () => {
         value={borderRadius}
         onChange={(e: React.FormEvent<HTMLInputElement>): void =>
           setBorderRadius(Number((e.target as HTMLInputElement).value))
+        }
+      />
+      <label htmlFor="backgroundColor">BackgroundColor</label>
+      <input
+        id="backgroundColor"
+        type="color"
+        name="backgroundColor"
+        value={backgroundColor}
+        onChange={(e: React.FormEvent<HTMLInputElement>): void =>
+          setBackgroundColor((e.target as HTMLInputElement).value)
         }
       />
     </form>

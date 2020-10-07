@@ -148,5 +148,56 @@ describe('Editor', () => {
         expect(borderRadiusFiled.value).toEqual('10');
       });
     });
+
+    describe('has a backgroundColor filed which', () => {
+      it('renders the backgroundColor filed as a range type', () => {
+        render(<Editor />);
+        const backgroundColorFiled = element('form[id="editor"]')!.elements
+          .backgroundColor;
+
+        expect(backgroundColorFiled).not.toBeNull();
+        expect(backgroundColorFiled.tagName).toEqual('INPUT');
+        expect(backgroundColorFiled.type).toEqual('color');
+      });
+
+      it('includes the existing value for the backgroundColor', () => {
+        render(<Editor />);
+        const backgroundColorFiled = element('form[id="editor"]')!.elements
+          .backgroundColor;
+
+        expect(backgroundColorFiled.value).toEqual('#000000');
+      });
+
+      it('renders a label for the backgroundColor field', () => {
+        render(<Editor />);
+        expect(labelFor('backgroundColor')).not.toBeNull();
+        expect(labelFor('backgroundColor')!.textContent).toEqual(
+          'BackgroundColor'
+        );
+      });
+
+      it('assign an id that matches the label id to the backgroundColor field', () => {
+        render(<Editor />);
+        const backgroundColorFiled = element('form[id="editor"]')!.elements
+          .backgroundColor;
+
+        expect(backgroundColorFiled.id).toEqual('backgroundColor');
+      });
+
+      it('react on change event', () => {
+        render(<Editor />);
+        const backgroundColorFiled = element('form[id="editor"]')!.elements
+          .backgroundColor;
+
+        expect(backgroundColorFiled.value).toEqual('#000000');
+
+        ReactTestUtils.Simulate.change(
+          backgroundColorFiled,
+          withEvent('backgroundColor', '#ffffff')
+        );
+
+        expect(backgroundColorFiled.value).toEqual('#ffffff');
+      });
+    });
   });
 });

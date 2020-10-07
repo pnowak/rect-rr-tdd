@@ -99,5 +99,54 @@ describe('Editor', () => {
         expect(heightFiled.value).toEqual('200');
       });
     });
+
+    describe('has a borderRadius filed which', () => {
+      it('renders the borderRadius filed as a range type', () => {
+        render(<Editor />);
+        const borderRadiusFiled = element('form[id="editor"]')!.elements
+          .borderRadius;
+
+        expect(borderRadiusFiled).not.toBeNull();
+        expect(borderRadiusFiled.tagName).toEqual('INPUT');
+        expect(borderRadiusFiled.type).toEqual('range');
+      });
+
+      it('includes the existing value for the borderRadius', () => {
+        render(<Editor />);
+        const borderRadiusFiled = element('form[id="editor"]')!.elements
+          .borderRadius;
+
+        expect(borderRadiusFiled.value).toEqual('0');
+      });
+
+      it('renders a label for the borderRadius field', () => {
+        render(<Editor />);
+        expect(labelFor('borderRadius')).not.toBeNull();
+        expect(labelFor('borderRadius')!.textContent).toEqual('BorderRadius');
+      });
+
+      it('assign an id that matches the label id to the borderRadius field', () => {
+        render(<Editor />);
+        const borderRadiusFiled = element('form[id="editor"]')!.elements
+          .borderRadius;
+
+        expect(borderRadiusFiled.id).toEqual('borderRadius');
+      });
+
+      it('react on change event', () => {
+        render(<Editor />);
+        const borderRadiusFiled = element('form[id="editor"]')!.elements
+          .borderRadius;
+
+        expect(borderRadiusFiled.value).toEqual('0');
+
+        ReactTestUtils.Simulate.change(
+          borderRadiusFiled,
+          withEvent('borderRadius', '10')
+        );
+
+        expect(borderRadiusFiled.value).toEqual('10');
+      });
+    });
   });
 });

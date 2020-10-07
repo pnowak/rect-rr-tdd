@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 export const Editor = () => {
   const [width, setWidth] = useState(100);
   const [height, setHeight] = useState(100);
+  const [borderRadius, setBorderRadius] = useState(0);
 
   return (
     <form id="editor">
@@ -25,6 +26,16 @@ export const Editor = () => {
         value={height}
         onChange={(e: React.FormEvent<HTMLInputElement>): void =>
           setHeight(Number((e.target as HTMLInputElement).value))
+        }
+      />
+      <label htmlFor="borderRadius">BorderRadius</label>
+      <input
+        id="borderRadius"
+        type="range"
+        name="borderRadius"
+        value={borderRadius}
+        onChange={(e: React.FormEvent<HTMLInputElement>): void =>
+          setBorderRadius(Number((e.target as HTMLInputElement).value))
         }
       />
     </form>

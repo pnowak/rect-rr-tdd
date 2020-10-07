@@ -48,14 +48,55 @@ describe('Editor', () => {
 
       it('react on change event', () => {
         render(<Editor />);
-        const widthFiled = element('form[id="editor"]')!.elements
-          .width as HTMLInputElement;
+        const widthFiled = element('form[id="editor"]')!.elements.width;
 
         expect(widthFiled.value).toEqual('100');
 
         ReactTestUtils.Simulate.change(widthFiled, withEvent('width', '200'));
 
         expect(widthFiled.value).toEqual('200');
+      });
+    });
+
+    describe('has a height filed which', () => {
+      it('renders the height filed as a number type', () => {
+        render(<Editor />);
+        const heightFiled = element('form[id="editor"]')!.elements.height;
+
+        expect(heightFiled).not.toBeNull();
+        expect(heightFiled.tagName).toEqual('INPUT');
+        expect(heightFiled.type).toEqual('number');
+      });
+
+      it('includes the existing value for the height', () => {
+        render(<Editor />);
+        const heightFiled = element('form[id="editor"]')!.elements.height;
+
+        expect(heightFiled.value).toEqual('100');
+      });
+
+      it('renders a label for the height field', () => {
+        render(<Editor />);
+        expect(labelFor('height')).not.toBeNull();
+        expect(labelFor('height')!.textContent).toEqual('Height');
+      });
+
+      it('assign an id that matches the label id to the height field', () => {
+        render(<Editor />);
+        const heightFiled = element('form[id="editor"]')!.elements.height;
+
+        expect(heightFiled.id).toEqual('height');
+      });
+
+      it('react on change event', () => {
+        render(<Editor />);
+        const heightFiled = element('form[id="editor"]')!.elements.height;
+
+        expect(heightFiled.value).toEqual('100');
+
+        ReactTestUtils.Simulate.change(heightFiled, withEvent('height', '200'));
+
+        expect(heightFiled.value).toEqual('200');
       });
     });
   });

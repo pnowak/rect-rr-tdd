@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const Editor = () => {
   const [width, setWidth] = useState(100);
+  const [height, setHeight] = useState(100);
 
   return (
     <form id="editor">
@@ -13,7 +14,17 @@ export const Editor = () => {
         name="width"
         value={width}
         onChange={(e: React.FormEvent<HTMLInputElement>): void =>
-          setWidth(Number(e.currentTarget.value))
+          setWidth(Number((e.target as HTMLInputElement).value))
+        }
+      />
+      <label htmlFor="height">Height</label>
+      <input
+        id="height"
+        type="number"
+        name="height"
+        value={height}
+        onChange={(e: React.FormEvent<HTMLInputElement>): void =>
+          setHeight(Number((e.target as HTMLInputElement).value))
         }
       />
     </form>

@@ -51,7 +51,7 @@ export const Editor = () => {
           }
         />
       </form>
-      <div id="output"></div>
+      <div id="output" style={{height, width, borderRadius, backgroundColor}}></div>
     </div>
   );
 };

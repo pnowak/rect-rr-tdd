@@ -206,5 +206,27 @@ describe('Editor', () => {
       render(<Editor />);
       expect(element('div#output')).not.toBeNull();
     });
-  })
+
+    it('initially renders a div with default properties', () => {
+      render(<Editor />);
+
+      const defaultDivStyle = {
+        width: '100px',
+        height: '100px',
+        borderRadius: '0',
+        backgroundColor: 'rgb(0, 0, 0)',
+      };
+
+      expect(element('div#output')!.style.width).toMatch(defaultDivStyle.width);
+      expect(element('div#output')!.style.height).toMatch(
+        defaultDivStyle.height
+      );
+      expect(element('div#output')!.style.borderRadius).toMatch(
+        defaultDivStyle.borderRadius
+      );
+      expect(element('div#output')!.style.backgroundColor).toMatch(
+        defaultDivStyle.backgroundColor
+      );
+    });
+  });
 });

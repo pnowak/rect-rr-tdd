@@ -228,5 +228,51 @@ describe('Editor', () => {
         defaultDivStyle.backgroundColor
       );
     });
+
+    it('reflects on change width', () => {
+      render(<Editor />);
+      const widthFiled = element('form[id="editor"]')!.elements.width;
+
+      ReactTestUtils.Simulate.change(widthFiled, withEvent('width', '200'));
+
+      expect(element('div#output')!.style.width).toMatch('200');
+    });
+
+    it('reflects on change height', () => {
+      render(<Editor />);
+      const heightFiled = element('form[id="editor"]')!.elements.height;
+
+      ReactTestUtils.Simulate.change(heightFiled, withEvent('height', '200'));
+
+      expect(element('div#output')!.style.height).toMatch('200');
+    });
+
+    it('reflects on change borderRadius', () => {
+      render(<Editor />);
+      const borderRadiusFiled = element('form[id="editor"]')!.elements
+        .borderRadius;
+
+      ReactTestUtils.Simulate.change(
+        borderRadiusFiled,
+        withEvent('borderRadius', '10')
+      );
+
+      expect(element('div#output')!.style.borderRadius).toMatch('10');
+    });
+
+    it('reflects on change backgroundColor', () => {
+      render(<Editor />);
+      const backgroundColorFiled = element('form[id="editor"]')!.elements
+        .backgroundColor;
+
+      ReactTestUtils.Simulate.change(
+        backgroundColorFiled,
+        withEvent('backgroundColor', '#ff0000')
+      );
+
+      expect(element('div#output')!.style.backgroundColor).toMatch(
+        'rgb(255, 0, 0)'
+      );
+    });
   });
 });

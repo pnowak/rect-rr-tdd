@@ -7,6 +7,7 @@ export type Elements = (selector: string) => HTMLElement[] | null;
 export type Render = (component: ReactElement) => ReactNode;
 export type LabelFor = (formElement: string) => HTMLElement | null;
 export type WithEvent = (name: string, value: string) => SyntheticEventData | undefined;
+export type Form = (id: string) => HTMLElement | null;
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createContainer = () => {
@@ -16,6 +17,7 @@ export const createContainer = () => {
   const elements: Elements = selector => Array.from(container.querySelectorAll(selector));
   const render: Render = async component => ReactDOM.render(component, container);
   const labelFor: LabelFor = formElement => container.querySelector(`label[for="${formElement}"]`);
+  const form: Form = (id: string) => container.querySelector(`form[id="${id}"]`);
 
   return {
     render,
@@ -23,6 +25,7 @@ export const createContainer = () => {
     element,
     elements,
     labelFor,
+    form
   };
 };
 

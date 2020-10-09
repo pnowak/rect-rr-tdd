@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
-import { createContainer, withEvent, Element, LabelFor, Render } from './helpers';
+import {
+  createContainer,
+  withEvent,
+  Element,
+  LabelFor,
+  Render
+} from './helpers';
 import { Editor } from '../src/features/editor/Editor';
 
 describe('Editor', () => {
@@ -14,6 +20,13 @@ describe('Editor', () => {
     it('renders a form', () => {
       render(<Editor />);
       expect(element('form[id="editor"]')).not.toBeNull();
+    });
+
+    it('has a submit button', () => {
+      render(<Editor />);
+      const submitButton = () => element('input[type="submit"]');
+
+      expect(submitButton()).not.toBeNull();
     });
 
     describe('has a width filed which', () => {

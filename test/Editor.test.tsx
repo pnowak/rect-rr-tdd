@@ -1,38 +1,38 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
 import {
-  createContainer,
   withEvent,
   Element,
   LabelFor,
-  Render
+  Form,
+  createContainerWithStore
 } from './helpers';
 import { Editor } from '../src/features/editor/Editor';
 
 describe('Editor', () => {
-  let render: Render, element: Element, labelFor: LabelFor;
+  let element: Element, labelFor: LabelFor, form: Form, renderWithStore;
 
   beforeEach(() => {
-    ({ render, element, labelFor } = createContainer());
+    ({ element, labelFor, form, renderWithStore } = createContainerWithStore());
   });
 
   describe('has a form element which', () => {
     it('renders a form', () => {
-      render(<Editor />);
-      expect(element('form[id="editor"]')).not.toBeNull();
+      renderWithStore(<Editor />);
+      expect(element('form[id="editorForm"]')).not.toBeNull();
     });
 
     it('has a submit button', () => {
-      render(<Editor />);
-      const submitButton = () => element('input[type="submit"]');
+      renderWithStore(<Editor />);
+      const button = element('input[type="button"]');
 
-      expect(submitButton()).not.toBeNull();
+      expect(button).not.toBeNull();
     });
 
     describe('has a width filed which', () => {
       it('renders the width filed as a number type', () => {
-        render(<Editor />);
-        const widthFiled = element('form[id="editor"]')!.elements.width;
+        renderWithStore(<Editor />);
+        const widthFiled = element('form[id="editorForm"]')!.elements.width;
 
         expect(widthFiled).not.toBeNull();
         expect(widthFiled.tagName).toEqual('INPUT');
@@ -40,28 +40,28 @@ describe('Editor', () => {
       });
 
       it('includes the existing value for the width', () => {
-        render(<Editor />);
-        const widthFiled = element('form[id="editor"]')!.elements.width;
+        renderWithStore(<Editor />);
+        const widthFiled = element('form[id="editorForm"]')!.elements.width;
 
         expect(widthFiled.value).toEqual('100');
       });
 
       it('renders a label for the width field', () => {
-        render(<Editor />);
+        renderWithStore(<Editor />);
         expect(labelFor('width')).not.toBeNull();
         expect(labelFor('width')!.textContent).toEqual('Width');
       });
 
       it('assign an id that matches the label id to the width field', () => {
-        render(<Editor />);
-        const widthFiled = element('form[id="editor"]')!.elements.width;
+        renderWithStore(<Editor />);
+        const widthFiled = element('form[id="editorForm"]')!.elements.width;
 
         expect(widthFiled.id).toEqual('width');
       });
 
       it('react on change event', () => {
-        render(<Editor />);
-        const widthFiled = element('form[id="editor"]')!.elements.width;
+        renderWithStore(<Editor />);
+        const widthFiled = element('form[id="editorForm"]')!.elements.width;
 
         expect(widthFiled.value).toEqual('100');
 
@@ -73,8 +73,8 @@ describe('Editor', () => {
 
     describe('has a height filed which', () => {
       it('renders the height filed as a number type', () => {
-        render(<Editor />);
-        const heightFiled = element('form[id="editor"]')!.elements.height;
+        renderWithStore(<Editor />);
+        const heightFiled = element('form[id="editorForm"]')!.elements.height;
 
         expect(heightFiled).not.toBeNull();
         expect(heightFiled.tagName).toEqual('INPUT');
@@ -82,28 +82,28 @@ describe('Editor', () => {
       });
 
       it('includes the existing value for the height', () => {
-        render(<Editor />);
-        const heightFiled = element('form[id="editor"]')!.elements.height;
+        renderWithStore(<Editor />);
+        const heightFiled = element('form[id="editorForm"]')!.elements.height;
 
         expect(heightFiled.value).toEqual('100');
       });
 
       it('renders a label for the height field', () => {
-        render(<Editor />);
+        renderWithStore(<Editor />);
         expect(labelFor('height')).not.toBeNull();
         expect(labelFor('height')!.textContent).toEqual('Height');
       });
 
       it('assign an id that matches the label id to the height field', () => {
-        render(<Editor />);
-        const heightFiled = element('form[id="editor"]')!.elements.height;
+        renderWithStore(<Editor />);
+        const heightFiled = element('form[id="editorForm"]')!.elements.height;
 
         expect(heightFiled.id).toEqual('height');
       });
 
       it('react on change event', () => {
-        render(<Editor />);
-        const heightFiled = element('form[id="editor"]')!.elements.height;
+        renderWithStore(<Editor />);
+        const heightFiled = element('form[id="editorForm"]')!.elements.height;
 
         expect(heightFiled.value).toEqual('100');
 
@@ -115,8 +115,8 @@ describe('Editor', () => {
 
     describe('has a borderRadius filed which', () => {
       it('renders the borderRadius filed as a range type', () => {
-        render(<Editor />);
-        const borderRadiusFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const borderRadiusFiled = element('form[id="editorForm"]')!.elements
           .borderRadius;
 
         expect(borderRadiusFiled).not.toBeNull();
@@ -125,30 +125,30 @@ describe('Editor', () => {
       });
 
       it('includes the existing value for the borderRadius', () => {
-        render(<Editor />);
-        const borderRadiusFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const borderRadiusFiled = element('form[id="editorForm"]')!.elements
           .borderRadius;
 
         expect(borderRadiusFiled.value).toEqual('0');
       });
 
       it('renders a label for the borderRadius field', () => {
-        render(<Editor />);
+        renderWithStore(<Editor />);
         expect(labelFor('borderRadius')).not.toBeNull();
         expect(labelFor('borderRadius')!.textContent).toEqual('BorderRadius');
       });
 
       it('assign an id that matches the label id to the borderRadius field', () => {
-        render(<Editor />);
-        const borderRadiusFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const borderRadiusFiled = element('form[id="editorForm"]')!.elements
           .borderRadius;
 
         expect(borderRadiusFiled.id).toEqual('borderRadius');
       });
 
       it('react on change event', () => {
-        render(<Editor />);
-        const borderRadiusFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const borderRadiusFiled = element('form[id="editorForm"]')!.elements
           .borderRadius;
 
         expect(borderRadiusFiled.value).toEqual('0');
@@ -164,8 +164,8 @@ describe('Editor', () => {
 
     describe('has a backgroundColor filed which', () => {
       it('renders the backgroundColor filed as a range type', () => {
-        render(<Editor />);
-        const backgroundColorFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const backgroundColorFiled = element('form[id="editorForm"]')!.elements
           .backgroundColor;
 
         expect(backgroundColorFiled).not.toBeNull();
@@ -174,15 +174,15 @@ describe('Editor', () => {
       });
 
       it('includes the existing value for the backgroundColor', () => {
-        render(<Editor />);
-        const backgroundColorFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const backgroundColorFiled = element('form[id="editorForm"]')!.elements
           .backgroundColor;
 
         expect(backgroundColorFiled.value).toEqual('#000000');
       });
 
       it('renders a label for the backgroundColor field', () => {
-        render(<Editor />);
+        renderWithStore(<Editor />);
         expect(labelFor('backgroundColor')).not.toBeNull();
         expect(labelFor('backgroundColor')!.textContent).toEqual(
           'BackgroundColor'
@@ -190,16 +190,16 @@ describe('Editor', () => {
       });
 
       it('assign an id that matches the label id to the backgroundColor field', () => {
-        render(<Editor />);
-        const backgroundColorFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const backgroundColorFiled = element('form[id="editorForm"]')!.elements
           .backgroundColor;
 
         expect(backgroundColorFiled.id).toEqual('backgroundColor');
       });
 
       it('react on change event', () => {
-        render(<Editor />);
-        const backgroundColorFiled = element('form[id="editor"]')!.elements
+        renderWithStore(<Editor />);
+        const backgroundColorFiled = element('form[id="editorForm"]')!.elements
           .backgroundColor;
 
         expect(backgroundColorFiled.value).toEqual('#000000');
@@ -216,12 +216,12 @@ describe('Editor', () => {
 
   describe('has an output element which', () => {
     it('renders a div with the right id', () => {
-      render(<Editor />);
+      renderWithStore(<Editor />);
       expect(element('div#output')).not.toBeNull();
     });
 
     it('initially renders a div with default properties', () => {
-      render(<Editor />);
+      renderWithStore(<Editor />);
 
       const defaultDivStyle = {
         width: '100px',
@@ -243,8 +243,8 @@ describe('Editor', () => {
     });
 
     it('reflects on change width', () => {
-      render(<Editor />);
-      const widthFiled = element('form[id="editor"]')!.elements.width;
+      renderWithStore(<Editor />);
+      const widthFiled = element('form[id="editorForm"]')!.elements.width;
 
       ReactTestUtils.Simulate.change(widthFiled, withEvent('width', '200'));
 
@@ -252,8 +252,8 @@ describe('Editor', () => {
     });
 
     it('reflects on change height', () => {
-      render(<Editor />);
-      const heightFiled = element('form[id="editor"]')!.elements.height;
+      renderWithStore(<Editor />);
+      const heightFiled = element('form[id="editorForm"]')!.elements.height;
 
       ReactTestUtils.Simulate.change(heightFiled, withEvent('height', '200'));
 
@@ -261,8 +261,8 @@ describe('Editor', () => {
     });
 
     it('reflects on change borderRadius', () => {
-      render(<Editor />);
-      const borderRadiusFiled = element('form[id="editor"]')!.elements
+      renderWithStore(<Editor />);
+      const borderRadiusFiled = element('form[id="editorForm"]')!.elements
         .borderRadius;
 
       ReactTestUtils.Simulate.change(
@@ -274,8 +274,8 @@ describe('Editor', () => {
     });
 
     it('reflects on change backgroundColor', () => {
-      render(<Editor />);
-      const backgroundColorFiled = element('form[id="editor"]')!.elements
+      renderWithStore(<Editor />);
+      const backgroundColorFiled = element('form[id="editorForm"]')!.elements
         .backgroundColor;
 
       ReactTestUtils.Simulate.change(

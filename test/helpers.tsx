@@ -1,6 +1,9 @@
-import { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { SyntheticEventData } from 'react-dom/test-utils';
+import { SyntheticEventData, act } from 'react-dom/test-utils';
+import { Provider } from 'react-redux';
+import { storeSpy } from 'expect-redux';
+import { configureStore } from '../src/app/store';
 
 export type Element = (selector: string) => HTMLElement | null;
 export type Elements = (selector: string) => HTMLElement[] | null;
@@ -27,6 +30,25 @@ export const createContainer = () => {
     labelFor,
     form
   };
+};
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const createContainerWithStore = () => {
+  const store = configureStore([storeSpy]);
+  const container = createContainer();
+
+  return {
+    ...container,
+    store,
+    renderWithStore: (component) => {
+      act(() => {
+        ReactDOM.render(
+          <Provider store={store}>{component}</Provider>,
+          container.container
+        );
+      });
+    }
+  }
 };
 
 export const withEvent: WithEvent = (name, value) => ({

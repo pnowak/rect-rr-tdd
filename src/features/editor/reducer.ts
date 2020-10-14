@@ -1,10 +1,10 @@
-import { ReducerAction, State } from '../../types';
+import { EditorAction, EditorState } from './types';
 
-const initialState: State = {
+const initialState: EditorState = {
   rects: []
 };
 
-export const editorReducer = (state = initialState, action: ReducerAction): State => {
+export const editorReducer = (state = initialState, action: EditorAction): EditorState => {
   const { type, payload } = action;
 
   switch (type) {

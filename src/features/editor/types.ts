@@ -6,8 +6,10 @@ export type Rect = {
     id: string
 };
 
-export type State = {
+export type EditorState = {
     rects: Rect[]
-}
+};
 
-export type ReducerAction = { type: 'CREATE_RECT'; payload: {rect: Rect} };
+export const CREATE_RECT = 'CREATE_RECT';
+
+export type EditorAction = { type: typeof CREATE_RECT; payload: {rect: Rect} };

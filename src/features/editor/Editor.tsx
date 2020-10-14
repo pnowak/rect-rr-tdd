@@ -1,7 +1,7 @@
 import React, { BaseSyntheticEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid'
-import { createRect } from './editorActions';
+import { createRect } from './actions';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const Editor = () => {

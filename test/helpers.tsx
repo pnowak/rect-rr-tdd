@@ -40,7 +40,7 @@ export const createContainerWithStore = () => {
   return {
     ...container,
     store,
-    renderWithStore: (component) => {
+    renderWithStore: (component: React.ReactNode) => {
       act(() => {
         ReactDOM.render(
           <Provider store={store}>{component}</Provider>,

@@ -12,7 +12,7 @@ describe('Editor reducer', () => {
   };
 
   it('returns a default state for an undefined existing state', () => {
-    expect(editorReducer(undefined, {})).toEqual({
+    expect(editorReducer(undefined, {type: null, payload: null})).toEqual({
       rects: []
     });
   });

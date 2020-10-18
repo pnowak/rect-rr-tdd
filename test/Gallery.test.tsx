@@ -53,4 +53,12 @@ describe('Gallery', () => {
     expect(elements('li > button')).toHaveLength(2);
     expect(elements('li > button')[0].type).toEqual('button');
   });
+
+  it('renders a button with value "X"', () => {
+    renderWithStore(<App />);
+    ReactTestUtils.Simulate.submit(form('editorForm'));
+    ReactTestUtils.Simulate.submit(form('editorForm'));
+
+    expect(elements('li > button')[0].textContent).toMatch('X');
+  });
 })

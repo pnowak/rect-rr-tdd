@@ -11,6 +11,7 @@ export const Gallery = () => {
       <ol>
         {rects.map(rect => (
           <li key={rect.id}>
+            <button type="button" value={rect.id}>X</button>
             <div style={rect}></div>
           </li>
         ))}

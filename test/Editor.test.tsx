@@ -24,7 +24,7 @@ describe('Editor', () => {
 
     it('has a submit button', () => {
       renderWithStore(<Editor />);
-      const button = element('input[type="button"]');
+      const button = element('input[type="submit"]');
 
       expect(button).not.toBeNull();
     });

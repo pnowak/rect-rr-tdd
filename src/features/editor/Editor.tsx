@@ -60,7 +60,7 @@ export const Editor = () => {
             setBackgroundColor((e.target as HTMLInputElement).value)
           }
         />
-        <input type="button" value="Create rect" />
+        <input type="submit" value="Create rect" />
       </form>
       <div id="output" style={{height, width, borderRadius, backgroundColor}}></div>
     </div>

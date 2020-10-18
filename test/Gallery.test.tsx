@@ -1,19 +1,19 @@
 import React from 'react';
-import ReactTestUtils, { act } from 'react-dom/test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import {
   Element,
+  Elements,
   Form,
   createContainerWithStore
 } from './helpers';
 import { Gallery } from '../src/features/gallery/Gallery';
 import { App } from '../src/app/App';
-import { Rect } from '../src/features/editor/types';
 
 describe('Gallery', () => {
-  let element: Element, container: HTMLDivElement, form: Form, renderWithStore;
+  let element: Element, elements: Elements, container: HTMLDivElement, form: Form, renderWithStore;
 
   beforeEach(() => {
-    ({ element, renderWithStore, form, container } = createContainerWithStore());
+    ({ element, elements, renderWithStore, form, container } = createContainerWithStore());
   });
 
   it('renders a div with the right id', () => {
@@ -35,5 +35,13 @@ describe('Gallery', () => {
 
     expect(element('ol')).not.toBeNull();
     expect(element('ol').children).toHaveLength(2);
+  });
+
+  it('renders each rect in an li', () => {
+    renderWithStore(<App />);
+    ReactTestUtils.Simulate.submit(form('editorForm'));
+    ReactTestUtils.Simulate.submit(form('editorForm'));
+
+    expect(elements('li')).toHaveLength(2);
   });
 })

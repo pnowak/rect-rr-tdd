@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
+import { expectRedux } from 'expect-redux';
 import {
   withEvent,
   Element,
@@ -8,12 +9,22 @@ import {
   createContainerWithStore
 } from './helpers';
 import { Editor } from '../src/features/editor/Editor';
+import { App } from '../src/app/App';
+import { Rect } from '../src/features/editor/types';
+
+const rect: Rect = {
+  width: 100,
+  height: 100,
+  borderRadius: 0,
+  backgroundColor: '#000000',
+  id: 'abc123'
+}
 
 describe('Editor', () => {
-  let element: Element, labelFor: LabelFor, form: Form, renderWithStore;
+  let element: Element, labelFor: LabelFor, form: Form, renderWithStore, store;
 
   beforeEach(() => {
-    ({ element, labelFor, form, renderWithStore } = createContainerWithStore());
+    ({ element, labelFor, form, renderWithStore, store } = createContainerWithStore());
   });
 
   describe('has a form element which', () => {
@@ -27,6 +38,18 @@ describe('Editor', () => {
       const button = element('input[type="submit"]');
 
       expect(button).not.toBeNull();
+    });
+
+    it.skip('dispatches CREATE_RECT when submitting data', () => {
+      renderWithStore(<App />);
+      ReactTestUtils.Simulate.submit(form('editorForm'));
+
+      return expectRedux(store)
+        .toDispatchAnAction()
+        .matching({
+          type: 'CREATE_RECT',
+          rect
+        });
     });
 
     describe('has a width filed which', () => {

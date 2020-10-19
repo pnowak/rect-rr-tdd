@@ -1,4 +1,7 @@
-import { EditorState } from '../editor/types';
+import { EditorState, Rect } from '../editor/types';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const selectRects = (state: EditorState) => state.rects;
+export const selectRects = (state: EditorState): Rect[] => state.rects;
+
+export const REMOVE_RECT = 'REMOVE_RECT';
+
+export type GalleryAction = { type: typeof REMOVE_RECT; payload: {rect: Rect} };

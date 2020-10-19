@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTestUtils from 'react-dom/test-utils';
+import { expectRedux } from 'expect-redux';
 import {
   Element,
   Elements,
@@ -10,10 +11,10 @@ import { Gallery } from '../src/features/gallery/Gallery';
 import { App } from '../src/app/App';
 
 describe('Gallery', () => {
-  let element: Element, elements: Elements, container: HTMLDivElement, form: Form, renderWithStore;
+  let element: Element, elements: Elements, container: HTMLDivElement, form: Form, renderWithStore, store;
 
   beforeEach(() => {
-    ({ element, elements, renderWithStore, form, container } = createContainerWithStore());
+    ({ element, elements, renderWithStore, store, form, container } = createContainerWithStore());
   });
 
   it('renders a div with the right id', () => {
@@ -60,5 +61,17 @@ describe('Gallery', () => {
     ReactTestUtils.Simulate.submit(form('editorForm'));
 
     expect(elements('li > button')[0].textContent).toMatch('X');
+  });
+
+  it('dispatches REMOVE_RECT when clicking "X" button', () => {
+    renderWithStore(<App />);
+    ReactTestUtils.Simulate.submit(form('editorForm'));
+
+    const button = elements('li > button')[0];
+    ReactTestUtils.Simulate.click(button);
+
+    return expectRedux(store)
+      .toDispatchAnAction()
+      .ofType('REMOVE_RECT');
   });
 })

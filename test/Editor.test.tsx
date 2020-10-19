@@ -10,15 +10,6 @@ import {
 } from './helpers';
 import { Editor } from '../src/features/editor/Editor';
 import { App } from '../src/app/App';
-import { Rect } from '../src/features/editor/types';
-
-const rect: Rect = {
-  width: 100,
-  height: 100,
-  borderRadius: 0,
-  backgroundColor: '#000000',
-  id: 'abc123'
-}
 
 describe('Editor', () => {
   let element: Element, labelFor: LabelFor, form: Form, renderWithStore, store;
@@ -40,16 +31,22 @@ describe('Editor', () => {
       expect(button).not.toBeNull();
     });
 
-    it.skip('dispatches CREATE_RECT when submitting data', () => {
+    it('dispatches CREATE_RECT when submitting data', () => {
       renderWithStore(<App />);
       ReactTestUtils.Simulate.submit(form('editorForm'));
 
       return expectRedux(store)
         .toDispatchAnAction()
-        .matching({
-          type: 'CREATE_RECT',
-          rect
-        });
+        .ofType('CREATE_RECT');
+    });
+
+    it.skip('prevents the default action when submitting the form', () => {
+      const preventDefaultSpy = jest.fn();
+
+      renderWithStore(<App />);
+      ReactTestUtils.Simulate.submit(form('editorForm'));
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
     });
 
     describe('has a width filed which', () => {

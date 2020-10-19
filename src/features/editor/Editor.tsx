@@ -12,10 +12,18 @@ export const Editor = () => {
   const [borderRadius, setBorderRadius] = useState(0);
   const [backgroundColor, setBackgroundColor] = useState('#000000');
 
+  const setToDefaultStyle = () => {
+    setWidth(100);
+    setHeight(100);
+    setBorderRadius(0);
+    setBackgroundColor('#000000');
+  };
+
   const handleSubmit = (event: BaseSyntheticEvent) => {
     event.preventDefault();
     dispatch(createRect({width, height, borderRadius, backgroundColor, id: nanoid()}));
-  }
+    setToDefaultStyle();
+  };
 
   return (
     <div>

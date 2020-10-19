@@ -49,6 +49,35 @@ describe('Editor', () => {
       expect(preventDefaultSpy).toHaveBeenCalled();
     });
 
+    it('inputs come back to default style after submitting the form', () => {
+      renderWithStore(<App />);
+
+      const widthFiled = element('form[id="editorForm"]')!.elements.width;
+      const heightFiled = element('form[id="editorForm"]')!.elements.height;
+      const borderRadiusFiled = element('form[id="editorForm"]')!.elements
+        .borderRadius;
+      const backgroundColorFiled = element('form[id="editorForm"]')!.elements
+        .backgroundColor;
+
+      ReactTestUtils.Simulate.change(widthFiled, withEvent('width', '200'));
+      ReactTestUtils.Simulate.change(heightFiled, withEvent('height', '200'));
+      ReactTestUtils.Simulate.change(
+        borderRadiusFiled,
+        withEvent('borderRadius', '10')
+      );
+      ReactTestUtils.Simulate.change(
+        backgroundColorFiled,
+        withEvent('backgroundColor', '#ff0000')
+      );
+
+      ReactTestUtils.Simulate.submit(form('editorForm'));
+      
+      expect(widthFiled.value).toEqual('100');
+      expect(heightFiled.value).toEqual('100');
+      expect(borderRadiusFiled.value).toEqual('0');
+      expect(backgroundColorFiled.value).toEqual('#000000');
+    });
+
     describe('has a width filed which', () => {
       it('renders the width filed as a number type', () => {
         renderWithStore(<Editor />);

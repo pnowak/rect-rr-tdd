@@ -1,10 +1,22 @@
-import React, { BaseSyntheticEvent, useState } from 'react';
+import React, { BaseSyntheticEvent, ReactElement, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid'
 import { createRect } from './actions';
+import styled from 'styled-components';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const Editor = () => {
+const StyledEditor = styled.div`
+  flex-direction: column;
+  align-content: flex-start;
+  justify-content: center;
+  width: 35%;
+`;
+
+const StyledInput = styled.input`
+  padding: 1px;
+  margin: 0 0 1rem .5rem;
+`;
+
+export const Editor = (): ReactElement => {
   const dispatch = useDispatch();
 
   const [width, setWidth] = useState(100);
@@ -26,10 +38,10 @@ export const Editor = () => {
   };
 
   return (
-    <div>
+    <StyledEditor>
       <form id="editorForm" onSubmit={handleSubmit}>
         <label htmlFor="width">Width</label>
-        <input
+        <StyledInput
           id="width"
           type="number"
           name="width"
@@ -39,7 +51,7 @@ export const Editor = () => {
           }
         />
         <label htmlFor="height">Height</label>
-        <input
+        <StyledInput
           id="height"
           type="number"
           name="height"
@@ -49,7 +61,7 @@ export const Editor = () => {
           }
         />
         <label htmlFor="borderRadius">BorderRadius</label>
-        <input
+        <StyledInput
           id="borderRadius"
           type="range"
           name="borderRadius"
@@ -59,7 +71,7 @@ export const Editor = () => {
           }
         />
         <label htmlFor="backgroundColor">BackgroundColor</label>
-        <input
+        <StyledInput
           id="backgroundColor"
           type="color"
           name="backgroundColor"
@@ -68,9 +80,9 @@ export const Editor = () => {
             setBackgroundColor((e.target as HTMLInputElement).value)
           }
         />
-        <input type="submit" value="Create rect" />
+        <StyledInput type="submit" value="Create rect" />
       </form>
       <div id="output" style={{height, width, borderRadius, backgroundColor}}></div>
-    </div>
+    </StyledEditor>
   );
 };

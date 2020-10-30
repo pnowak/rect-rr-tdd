@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Editor } from '../features/editor/Editor';
 import { Gallery } from '../features/gallery/Gallery';
+import styled from 'styled-components';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const App = () => {
+const StyledMainDiv = styled.div`
+  display: flex;
+  align-items: flex-start;
+  align-content: flex-start;
+`;
+
+export const App = (): ReactElement => {
   return (
-    <div>
+    <StyledMainDiv>
       <Editor />
       <Gallery />
-    </div>
+    </StyledMainDiv>
   );
 };

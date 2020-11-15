@@ -38,5 +38,10 @@ describe('localStorage', () => {
 
       expect(next).toHaveBeenCalledWith(action);
     });
+
+    it('returns the result of next action', () => {
+      next.mockReturnValue({ rects: [rect] });
+      expect(callMiddleware()).toEqual({ rects: [rect] });
+    });
   })
 })

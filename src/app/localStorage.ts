@@ -1,3 +1,3 @@
 export const save = store => next => (action) => {
-  next(action);
+  return next(action);
 }

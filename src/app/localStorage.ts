@@ -1,3 +1,10 @@
 export const save = store => next => (action) => {
-  return next(action);
+  const result = next(action);
+
+  localStorage.setItem(
+    'applicationState',
+    JSON.stringify(store.getState())
+  );
+
+  return result;
 }

@@ -43,5 +43,13 @@ describe('localStorage', () => {
       next.mockReturnValue({ rects: [rect] });
       expect(callMiddleware()).toEqual({ rects: [rect] });
     });
-  })
+
+    it('saves the current state of the store in localStorage', () => {
+      callMiddleware();
+      expect(setItemSpy).toHaveBeenCalledWith(
+        'applicationState',
+        JSON.stringify(store.getState())
+      );
+    });
+  });
 })

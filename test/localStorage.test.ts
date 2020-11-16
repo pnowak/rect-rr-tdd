@@ -1,4 +1,4 @@
-import { save } from '../src/app/localStorage';
+import { save, load } from '../src/app/localStorage';
 import { Rect } from '../src/features/editor/types';
 
 describe('localStorage', () => {
@@ -50,6 +50,21 @@ describe('localStorage', () => {
         'applicationState',
         JSON.stringify(store.getState())
       );
+    });
+  });
+
+  describe('load', () => {
+    describe('with saved data', () => {
+      beforeEach(() => {
+        getItemSpy.mockReturnValueOnce(
+          JSON.stringify({ rects: [rect] })
+        );
+      });
+
+      it('retrieves state from localStorage', () => {
+        load();
+        expect(getItemSpy).toHaveBeenCalledWith('applicationState');
+      });
     });
   });
 })

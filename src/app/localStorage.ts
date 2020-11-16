@@ -7,4 +7,13 @@ export const save = store => next => (action) => {
   );
 
   return result;
-}
+};
+
+export const load = () => {
+  const serializedState = localStorage.getItem('applicationState');
+
+  if (serializedState && serializedState !== null) {
+    return JSON.parse(serializedState);
+  }
+};
+

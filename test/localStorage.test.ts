@@ -66,5 +66,10 @@ describe('localStorage', () => {
         expect(getItemSpy).toHaveBeenCalledWith('applicationState');
       });
     });
+
+    it('returns undefined if there is no state saved', () => {
+      getItemSpy.mockReturnValue(null);
+      expect(load()).not.toBeDefined();
+    });
   });
 })
